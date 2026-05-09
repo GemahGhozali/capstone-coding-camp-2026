@@ -1,4 +1,5 @@
-import express, { Request, Response } from "express";
+import { NotFoundError } from "./utils/error";
+import express, { NextFunction, Request, Response } from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import helmet from "helmet";
@@ -22,6 +23,11 @@ app.get("/", (req: Request, res: Response) => {
 // Routers
 app.use("/auth", authRouter);
 app.use("/corrections", correctionRouter);
+
+// 404 Error Handler
+app.use((req: Request, res: Response, next: NextFunction) => {
+  return next(new NotFoundError(`Endpoint ${req.method} ${req.path} tidak ditemukan!`));
+});
 
 // Global Error Handler
 app.use(errorMiddleware);
