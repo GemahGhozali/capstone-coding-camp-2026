@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import helmet from "helmet";
+import errorMiddleware from "./middlewares/error.middleware";
 
 const app = express();
 
@@ -15,5 +16,8 @@ app.use(cookieParser());
 app.get("/", (req: Request, res: Response) => {
   res.status(200).json({ message: "EssayGrader RESTful API 🚀" });
 });
+
+// Global Error Handler
+app.use(errorMiddleware);
 
 export default app;
