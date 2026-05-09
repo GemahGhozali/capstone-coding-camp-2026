@@ -1,1 +1,131 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: "Poppins", Arial, Helvetica, sans-serif;
+  }
+}
+
+@layer components {
+  /* Custom Gradient Styles */
+  .bg-gradient-primary {
+    background: linear-gradient(to top, #1447e6 0%, #2b7fff 50%, #51a2ff 100%);
+  }
+
+  /* Custom Typography Styles */
+  .text-h1 {
+    font-size: 56px;
+    line-height: 84px;
+  }
+
+  .text-h2 {
+    font-size: 40px;
+    line-height: 60px;
+  }
+
+  .text-h3 {
+    font-size: 32px;
+    line-height: 48px;
+  }
+
+  .text-h4 {
+    font-size: 24px;
+    line-height: 36px;
+  }
+
+  .text-h5 {
+    font-size: 20px;
+    line-height: 30px;
+  }
+
+  .text-body {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .text-caption {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .text-btn {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+  }
+
+  .text-btn-lg {
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 500;
+  }
+
+  .text-badge {
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  @media (max-width: 768px) {
+    .text-h1 {
+      font-size: 32px;
+      line-height: 48px;
+    }
+
+    .text-h2 {
+      font-size: 28px;
+      line-height: 42px;
+    }
+
+    .text-h3 {
+      font-size: 22px;
+      line-height: 32px;
+    }
+
+    .text-h4 {
+      font-size: 18px;
+      line-height: 28px;
+    }
+
+    .text-h5 {
+      font-size: 16px;
+      line-height: 24px;
+    }
+
+    .text-body {
+      font-size: 14px;
+      line-height: 22px;
+    }
+
+    .text-caption {
+      font-size: 12px;
+      line-height: 18px;
+    }
+
+    .text-btn {
+      font-size: 14px;
+      line-height: 22px;
+    }
+
+    .text-btn-lg {
+      font-size: 16px;
+      line-height: 24px;
+    }
+
+    .text-badge {
+      font-size: 10px;
+      line-height: 16px;
+    }
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
