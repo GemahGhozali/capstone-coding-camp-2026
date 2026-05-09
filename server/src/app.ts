@@ -3,6 +3,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import helmet from "helmet";
 import errorMiddleware from "./middlewares/error.middleware";
+import authRouter from "./modules/auth/auth.route";
 
 const app = express();
 
@@ -16,6 +17,9 @@ app.use(cookieParser());
 app.get("/", (req: Request, res: Response) => {
   res.status(200).json({ message: "EssayGrader RESTful API 🚀" });
 });
+
+// Routers
+app.use("/auth", authRouter);
 
 // Global Error Handler
 app.use(errorMiddleware);
