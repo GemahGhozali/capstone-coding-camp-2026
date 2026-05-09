@@ -1,3 +1,6 @@
+import { RouterProvider } from "react-router-dom";
+import router from "./routes";
+
 export default function App() {
-  return <h1 className="text-blue-600">EssayGrader</h1>;
+  return <RouterProvider router={router} />;
 }
