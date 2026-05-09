@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import helmet from "helmet";
 import errorMiddleware from "./middlewares/error.middleware";
 import authRouter from "./modules/auth/auth.route";
+import correctionRouter from "./modules/correction/correction.route";
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.get("/", (req: Request, res: Response) => {
 
 // Routers
 app.use("/auth", authRouter);
+app.use("/corrections", correctionRouter);
 
 // Global Error Handler
 app.use(errorMiddleware);
