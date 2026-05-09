@@ -6,3 +6,52 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+enum RelevanceLabel {
+  SangatRelevan @map("Sangat Relevan")
+  CukupRelevan  @map("Cukup Relevan")
+  TidakRelevan  @map("Kurang Relevan")
+}
+
+model User {
+  id            String         @id @default(uuid())
+  username      String
+  email         String         @unique
+  password      String
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  corrections   Correction[]
+  refreshTokens RefreshToken[]
+}
+
+model Correction {
+  id               String            @id @default(uuid())
+  userId           String
+  question         String            @db.Text
+  gradedAnswer     String            @db.Text
+  finalScore       Int
+  similarityScore  Int
+  relevanceLabel   RelevanceLabel
+  feedback         String            @db.Text
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  user             User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  answerReferences AnswerReference[]
+}
+
+model AnswerReference {
+  id           String     @id @default(uuid())
+  correctionId String
+  answer       String     @db.Text
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  correction   Correction @relation(fields: [correctionId], references: [id], onDelete: Cascade)
+}
+
+model RefreshToken {
+  id        String    @id @default(uuid())
+  userId    String
+  token     String    @unique
+  createdAt DateTime  @default(now())
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
