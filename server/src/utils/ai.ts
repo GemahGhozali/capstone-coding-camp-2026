@@ -1,5 +1,5 @@
 import { AIResult } from "../modules/correction/correction.type";
-import { RelevanceLabel } from "../../prisma/generated/enums";
+import { RelevanceLabel } from "../generated/prisma/enums";
 
 function getRelevanceLabel(score: number): RelevanceLabel {
   if (score >= 76) return RelevanceLabel.SangatRelevan;
