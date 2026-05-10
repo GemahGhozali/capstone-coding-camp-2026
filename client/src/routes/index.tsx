@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import { HomePage } from "@/features/landing-page";
 import { AuthLayout, LoginPage, RegisterPage } from "@/features/auth";
 import { CorrectionDetailsPage, CorrectionPage } from "@/features/correction";
+import { authUserLoader } from "./loaders/auth.loader";
 
 const router = createBrowserRouter([
   {
@@ -10,6 +11,7 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <HomePage />,
+        loader: authUserLoader,
       },
       {
         element: <AuthLayout />,
