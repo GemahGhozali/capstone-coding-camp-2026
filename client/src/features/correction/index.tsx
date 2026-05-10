@@ -1,3 +1,5 @@
+export * from "./api/correction.services";
+
 export * from "./types/correction.type";
 
 export * from "./schemas/correction.schema";
