@@ -3,6 +3,7 @@ import { HomePage } from "@/features/landing-page";
 import { AuthLayout, LoginPage, RegisterPage } from "@/features/auth";
 import { CorrectionDetailsPage, CorrectionPage } from "@/features/correction";
 import { authUserLoader } from "./loaders/auth.loader";
+import { correctionDetailsLoader, correctionHistoryLoader } from "./loaders/correction.loader";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,7 @@ const router = createBrowserRouter([
       },
       {
         path: "correction",
+        loader: correctionHistoryLoader,
         children: [
           {
             index: true,
@@ -36,6 +38,7 @@ const router = createBrowserRouter([
           {
             path: ":correctionId",
             element: <CorrectionDetailsPage />,
+            loader: correctionDetailsLoader,
           },
         ],
       },
