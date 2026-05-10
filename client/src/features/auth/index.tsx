@@ -1,4 +1,6 @@
 export * from "./api/auth.services";
+export * from "./api/auth.queries";
+export * from "./api/auth.mutations";
 
 export * from "./types/auth.type";
 
