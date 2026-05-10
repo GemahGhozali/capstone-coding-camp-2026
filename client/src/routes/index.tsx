@@ -4,6 +4,7 @@ import { AuthLayout, LoginPage, RegisterPage } from "@/features/auth";
 import { CorrectionDetailsPage, CorrectionPage } from "@/features/correction";
 import { authUserLoader } from "./loaders/auth.loader";
 import { correctionDetailsLoader, correctionHistoryLoader } from "./loaders/correction.loader";
+import { CorrectionLayout } from "@/features/correction/components/layouts/CorrectionLayout";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,7 @@ const router = createBrowserRouter([
       },
       {
         path: "correction",
+        element: <CorrectionLayout />,
         loader: correctionHistoryLoader,
         children: [
           {
