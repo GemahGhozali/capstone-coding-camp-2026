@@ -5,6 +5,7 @@ import { CorrectionDetailsPage, CorrectionPage } from "@/features/correction";
 import { authUserLoader } from "./loaders/auth.loader";
 import { correctionDetailsLoader, correctionHistoryLoader } from "./loaders/correction.loader";
 import { CorrectionLayout } from "@/features/correction/components/layouts/CorrectionLayout";
+import CorrectionNotFoundPage from "@/features/correction/pages/CorrectionNotFoundPage";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,7 @@ const router = createBrowserRouter([
           {
             path: ":correctionId",
             element: <CorrectionDetailsPage />,
+            errorElement: <CorrectionNotFoundPage />,
             loader: correctionDetailsLoader,
           },
         ],
