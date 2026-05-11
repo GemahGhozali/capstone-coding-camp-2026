@@ -42,9 +42,9 @@ axiosInstance.interceptors.response.use(
     const errorCode = error.response?.data?.error?.code;
     const status = error.response?.status;
 
-    // Reject all other errors immediately except 401 TOKEN_EXPIRED errors
-    if (status !== 401 || errorCode !== "TOKEN_EXPIRED") {
-      return Promise.reject(error.response.data);
+    // Reject all other errors immediately except 401 TOKEN_EXPIRED/INVALID errors
+    if (status !== 401 || (errorCode !== "TOKEN_EXPIRED" && errorCode !== "TOKEN_INVALID")) {
+      return Promise.reject(error.response?.data || error);
     }
 
     // Reject if refresh token request is failed (Refresh token is invalid/expired)
