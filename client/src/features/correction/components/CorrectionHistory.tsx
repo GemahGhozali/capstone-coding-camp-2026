@@ -41,7 +41,7 @@ export default function CorrectionHistory({ searchQuery, filter, onCloseSidebar 
 
 function filterCorrection(correction: Array<CorrectionHistory>, searchQuery: string, filter: TabFilters) {
   return correction.filter((correction) => {
-    const matchSearch = correction.question.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchSearch = correction.question.toLowerCase().includes(searchQuery.toLowerCase().trim());
 
     const range = getScoreRange(filter);
     const matchFilter = !range || (correction.finalScore >= range.min && correction.finalScore <= range.max);
