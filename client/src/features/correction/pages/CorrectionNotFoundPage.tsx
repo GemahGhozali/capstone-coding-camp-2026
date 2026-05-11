@@ -4,7 +4,7 @@ import ErrorIcon from "@/assets/icons/ErrorIcon";
 import PlusIcon from "@/assets/icons/PlusIcon";
 import Button from "@/components/ui/Button";
 
-export default function CorrectionNotFoundPage() {
+export function CorrectionNotFoundPage() {
   const navigate = useNavigate();
 
   return (

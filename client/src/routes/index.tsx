@@ -1,11 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 import { HomePage } from "@/features/landing-page";
 import { AuthLayout, LoginPage, RegisterPage } from "@/features/auth";
-import { CorrectionDetailsPage, CorrectionPage } from "@/features/correction";
+import { CorrectionDetailsPage, CorrectionNotFoundPage, CorrectionPage } from "@/features/correction";
 import { authUserLoader } from "./loaders/auth.loader";
 import { correctionDetailsLoader, correctionHistoryLoader } from "./loaders/correction.loader";
 import { CorrectionLayout } from "@/features/correction/components/layouts/CorrectionLayout";
-import CorrectionNotFoundPage from "@/features/correction/pages/CorrectionNotFoundPage";
 
 const router = createBrowserRouter([
   {
