@@ -59,6 +59,7 @@ export async function refresh(req: Request, res: Response, next: NextFunction): 
 
     const { accessToken, refreshToken } = await AuthService.refreshTokens(token);
 
+    res.clearCookie(REFRESH_TOKEN_COOKIE);
     res.cookie(REFRESH_TOKEN_COOKIE, refreshToken, COOKIE_OPTIONS);
 
     sendSuccessResponse(res, { status: 200, message: "Token berhasil diperbaharui", data: { accessToken } });
