@@ -4,6 +4,7 @@ import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import { correctionHistoryQueryOptions } from "../api/correction.queries";
 import type { CorrectionHistory } from "../types/correction.type";
 import type { TabFilters } from "./TabsFilter";
+import CorrectionHistoryEmptyState from "./CorrectionHistoryEmptyState";
 
 interface CorrectionHistoryProps {
   searchQuery: string;
@@ -25,13 +26,17 @@ export default function CorrectionHistory({ searchQuery, filter, onCloseSidebar 
     navigate(`/correction/${id}`);
   };
 
-  return (
-    <div className="overflow-y-auto grow flex flex-col gap-4 md:gap-6 px-4 md:px-6 pb-4 md:pb-6">
-      {filteredCorrections.map((correction) => (
-        <CorrectionHistoryItem key={correction.id} onClick={() => handleClickHistory(correction.id)} isActive={correction.id === correctionId} {...correction} />
-      ))}
-    </div>
-  );
+  const renderCorrectionHistory = () => {
+    if (filteredCorrections.length === 0) {
+      return <CorrectionHistoryEmptyState message={searchQuery ? "Riwayat koreksi tidak ditemukan" : "Tidak ada riwayat koreksi apapun"} />;
+    }
+
+    return filteredCorrections.map((correction) => (
+      <CorrectionHistoryItem key={correction.id} onClick={() => handleClickHistory(correction.id)} isActive={correction.id === correctionId} {...correction} />
+    ));
+  };
+
+  return <div className="overflow-y-auto grow flex flex-col gap-4 md:gap-6 px-4 md:px-6 pb-4 md:pb-6">{renderCorrectionHistory()}</div>;
 }
 
 function filterCorrection(correction: Array<CorrectionHistory>, searchQuery: string, filter: TabFilters) {
