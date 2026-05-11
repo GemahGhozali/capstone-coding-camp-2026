@@ -11,11 +11,11 @@ const SOLUTON_LIST = [
 
 export default function AboutSection() {
   return (
-    <section id="tentang-aplikasi" className="w-full max-w-300 mx-auto flex items-center max-[1400px]:flex-col relative gap-4 min-[1400px]:gap-16 pt-16 md:pt-32">
-      <div className="max-[1400px]:size-auto w-104 h-129 shrink-0 max-[1400px]:order-2">
-        <img src={AboutIllustration} alt="About Illustration" className="max-[1440px]:w-170 w-133.75 relative -left-4 min-[1400px]:absolute min-[1400px]:-left-21 min-[1400px]:-bottom-7" />
+    <section id="tentang-aplikasi" className="w-full max-w-300 mx-auto flex items-center max-[1440px]:flex-col relative gap-4 min-[1440px]:gap-16 pt-16 md:pt-32">
+      <div className="max-[1440px]:size-auto w-104 h-129 shrink-0 max-[1440px]:order-2">
+        <img src={AboutIllustration} alt="About Illustration" className="max-[1440px]:w-170 w-133.75 relative -left-4 min-[1440px]:absolute min-[1440px]:-left-21 min-[1440px]:-bottom-7" />
       </div>
-      <div className="max-[1400px]:order-1">
+      <div className="max-[1440px]:order-1">
         <SectionBadge>Tentang EssayGrader</SectionBadge>
         <h3 className="text-h3 font-bold max-md:mb-2 my-4">Apa Yang Melatarbelakangi Pembuatan EssayGrader?</h3>
         <p className="text-body text-neutral-500 mb-6 md:mb-8">
