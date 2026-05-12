@@ -33,7 +33,7 @@ export function CorrectionPage() {
         {...register("question")}
       />
 
-      <AnswerReferencesInput fields={fields} register={register} errors={errors} onAdd={() => append({ value: "" })} onRemove={remove} />
+      <AnswerReferencesInput fields={fields} register={register} errors={errors} onAdd={() => append({ value: "" })} onRemove={remove} disabled={isPending} />
 
       <TextArea
         label="Jawaban Yang Ingin Dikoreksi"
