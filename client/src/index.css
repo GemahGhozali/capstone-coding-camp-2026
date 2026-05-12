@@ -5,6 +5,10 @@
   body {
     font-family: "Poppins", Arial, Helvetica, sans-serif;
   }
+
+  button {
+    outline: none;
+  }
 }
 
 @layer components {
