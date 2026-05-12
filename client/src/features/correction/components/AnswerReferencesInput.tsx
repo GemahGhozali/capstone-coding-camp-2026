@@ -8,9 +8,10 @@ interface AnswerReferencesInputProps {
   errors: FieldErrors<CorrectionFormValues>;
   onAdd: () => void;
   onRemove: (index: number) => void;
+  disabled: boolean;
 }
 
-export default function AnswerReferencesInput({ fields, register, errors, onAdd, onRemove }: AnswerReferencesInputProps) {
+export default function AnswerReferencesInput({ fields, register, errors, onAdd, onRemove, disabled }: AnswerReferencesInputProps) {
   return (
     <div>
       <label className="block mb-1.5 text-body font-semibold">
@@ -26,7 +27,7 @@ export default function AnswerReferencesInput({ fields, register, errors, onAdd,
             error={errors.answerReferences?.[index]?.value?.message}
             onAdd={onAdd}
             onDelete={onRemove}
-            inputProps={register(`answerReferences.${index}.value`)}
+            inputProps={{ disabled, ...register(`answerReferences.${index}.value`) }}
           />
         ))}
       </div>
