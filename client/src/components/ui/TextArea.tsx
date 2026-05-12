@@ -15,7 +15,7 @@ export default function TextArea({ label, placeholder, required = true, error, c
         </label>
       )}
       <div
-        className={`flex inset-ring rounded-lg focus-within:inset-ring-2 ${error ? "inset-ring-red-500 focus-within:inset-ring-red-500" : "inset-ring-neutral-300 focus-within:inset-ring-black"} ${props.disabled ? "cursor-not-allowed bg-neutral-100" : "bg-white"}`}
+        className={`flex inset-ring rounded-lg focus-within:inset-ring-2 ${error ? "inset-ring-red-500 focus-within:inset-ring-red-500" : "inset-ring-neutral-300 focus-within:inset-ring-black"} ${props.disabled ? "cursor-not-allowed bg-neutral-100 text-neutral-500" : "bg-white"}`}
       >
         <textarea placeholder={placeholder} rows={rows} className="grow focus:outline-0 p-3 text-body disabled:cursor-not-allowed resize-none" {...props} />
       </div>
