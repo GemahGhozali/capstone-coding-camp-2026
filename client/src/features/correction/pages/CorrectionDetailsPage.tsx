@@ -52,12 +52,19 @@ export function CorrectionDetailsPage() {
         icon={<EditIcon className="size-5 fill-neutral-500" />}
         placeholder="Tuliskan soal essay disini..."
         error={errors.question?.message}
+        disabled={isPending}
         {...register("question")}
       />
 
       <AnswerReferencesInput fields={fields} register={register} errors={errors} onAdd={() => append({ value: "" })} onRemove={remove} />
 
-      <TextArea label="Jawaban Yang Ingin Dikoreksi" placeholder="Tulis jawaban yang ingin dikoreksi disini..." error={errors.gradedAnswer?.message} {...register("gradedAnswer")} />
+      <TextArea
+        label="Jawaban Yang Ingin Dikoreksi"
+        placeholder="Tulis jawaban yang ingin dikoreksi disini..."
+        error={errors.gradedAnswer?.message}
+        disabled={isPending}
+        {...register("gradedAnswer")}
+      />
 
       {isPending ? <AnalysisResultSkeleton /> : <AnalysisResult finalScore={correction.finalScore} similarityScore={correction.similarityScore} feedback={correction.feedback} />}
 
