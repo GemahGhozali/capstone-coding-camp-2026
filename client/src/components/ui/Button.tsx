@@ -54,7 +54,7 @@ export default function Button(props: ButtonProps) {
 }
 
 function generateButtonClassStyle(props: ButtonProps): string {
-  const { size = "regular", iconPosition, radius = "default", color = "primary", disabled, className = "" } = props;
+  const { size = "regular", iconPosition, radius = "default", color = "primary", className = "" } = props;
 
   const isRegular = size === "regular";
   const isLarge = size === "large";
@@ -71,5 +71,5 @@ function generateButtonClassStyle(props: ButtonProps): string {
 
   const textStyles = isRegular ? "text-btn" : "text-btn-lg";
 
-  return `inline-flex items-center justify-center gap-2 cursor-pointer ${textStyles} ${COLOR_STYLES[color]} ${RADIUS_STYLES[radius]} ${paddingStyles} ${disabled ? "opacity-50 cursor-not-allowed" : ""} ${className}`;
+  return `inline-flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed ${textStyles} ${COLOR_STYLES[color]} ${RADIUS_STYLES[radius]} ${paddingStyles} ${className}`;
 }
