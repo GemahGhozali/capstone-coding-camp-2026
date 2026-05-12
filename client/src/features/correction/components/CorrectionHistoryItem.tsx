@@ -2,6 +2,7 @@ import formattedDate from "@/utils/formattedDate";
 import CalendarIcon from "@/assets/icons/CalendarIcon";
 import LineProgressBar from "@/components/ui/LineProgressBar";
 import ScoreBadge from "@/components/ui/ScoreBadge";
+import CheckIcon from "@/assets/icons/CheckIcon";
 
 interface CorrectionHistoryItemProps {
   question: string;
@@ -16,7 +17,7 @@ export default function CorrectionHistoryItem({ question, finalScore, createdAt,
   return (
     <div
       onClick={onClick}
-      className={`cursor-pointer rounded-2xl p-5 md:p-6 relative ${isActive ? "inset-ring-2 inset-ring-black bg-neutral-50" : "bg-white inset-ring inset-ring-neutral-300"} ${className}`}
+      className={`duration-300 cursor-pointer rounded-2xl p-5 md:p-6 relative hover:bg-neutral-50 ${isActive ? "inset-ring-2 inset-ring-black bg-neutral-50" : "bg-white inset-ring inset-ring-neutral-300"} ${className}`}
     >
       <div className="flex items-center gap-1.5 mb-1.5">
         <CalendarIcon className="size-4 fill-blue-600" />
@@ -28,6 +29,8 @@ export default function CorrectionHistoryItem({ question, finalScore, createdAt,
         <p className="text-caption font-medium text-neutral-500">Skor Akhir Penilaian:</p>
         <ScoreBadge score={finalScore} />
       </div>
+
+      {isActive && <CheckIcon className="duration-300 size-6 fill-black absolute top-4 right-4" />}
     </div>
   );
 }
