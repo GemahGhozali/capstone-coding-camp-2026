@@ -23,10 +23,10 @@ type ButtonProps = BaseButtonProps & IconProps;
 
 // Constant Styles
 const COLOR_STYLES: Record<ButtonColor, string> = {
-  primary: "bg-gradient-primary text-white inset-ring-2 inset-ring-white/25",
-  black: "bg-neutral-900 text-white",
-  white: "bg-neutral-100 text-black",
-  red: "bg-red-600 text-white",
+  primary: "bg-gradient-primary hover:brightness-95 text-white inset-ring-2 inset-ring-white/25 focus:ring-blue-200",
+  black: "bg-neutral-800 hover:bg-neutral-900 text-white focus:ring-neutral-500",
+  white: "bg-neutral-100 hover:bg-neutral-200 text-black focus:ring-neutral-200",
+  red: "bg-red-600 hover:bg-red-700 text-white focus:ring-red-300",
 };
 
 const RADIUS_STYLES: Record<ButtonRadius, string> = {
@@ -71,5 +71,5 @@ function generateButtonClassStyle(props: ButtonProps): string {
 
   const textStyles = isRegular ? "text-btn" : "text-btn-lg";
 
-  return `inline-flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed ${textStyles} ${COLOR_STYLES[color]} ${RADIUS_STYLES[radius]} ${paddingStyles} ${className}`;
+  return `transition-all duration-300 inline-flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed focus:ring-4 ${textStyles} ${COLOR_STYLES[color]} ${RADIUS_STYLES[radius]} ${paddingStyles} ${className}`;
 }
