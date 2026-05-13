@@ -44,14 +44,14 @@ export async function refreshTokens(token: string): Promise<AuthTokens> {
   try {
     payload = verifyRefreshToken(token);
   } catch (error) {
-    // Invalid Refresh Token
-    if (error instanceof jwt.JsonWebTokenError) {
-      throw new JWTTokenExpiredError("Refresh token tidak valid!");
-    }
-
     // Expired Refresh Token
     if (error instanceof jwt.TokenExpiredError) {
       throw new JWTTokenExpiredError("Refresh token sudah kadaluwarsa!");
+    }
+
+    // Invalid Refresh Token
+    if (error instanceof jwt.JsonWebTokenError) {
+      throw new JWTTokenInvalidError("Refresh token tidak valid!");
     }
 
     throw error;
