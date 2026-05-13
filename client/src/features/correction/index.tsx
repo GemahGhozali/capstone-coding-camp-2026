@@ -9,3 +9,4 @@ export * from "./schemas/correction.schema";
 export * from "./pages/CorrectionPage";
 export * from "./pages/CorrectionDetailsPage";
 export * from "./pages/CorrectionNotFoundPage";
+export * from "./components/layouts/CorrectionLayout";
