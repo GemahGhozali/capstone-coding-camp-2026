@@ -1,10 +1,19 @@
 # Capstone Coding Camp 2026
 
+## Requirements
+
 Pastikan sistem anda sudah terinstall :
 
+- GIT
 - Node.js
 - NPM
 - PostgreSQL
+
+## Clone Repository
+
+```bash
+git clone https://github.com/GemahGhozali/capstone-coding-camp-2026.git
+```
 
 ---
 
