@@ -46,6 +46,7 @@ export async function refreshTokens(token: string): Promise<AuthTokens> {
   } catch (error) {
     // Expired Refresh Token
     if (error instanceof jwt.TokenExpiredError) {
+      await AuthRepository.deleteRefreshToken(token);
       throw new JWTTokenExpiredError("Refresh token sudah kadaluwarsa!");
     }
 
