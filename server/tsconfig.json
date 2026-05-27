@@ -9,7 +9,6 @@
     // Environment Settings
     "module": "esnext",
     "target": "esnext",
-    "types": [],
 
     // Other Outputs
     "sourceMap": true,
