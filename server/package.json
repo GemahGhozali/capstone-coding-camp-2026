@@ -4,7 +4,6 @@
   "description": "EssayGrader RESTful API",
   "author": "Gemah Ghozali",
   "license": "ISC",
-  "type": "module",
   "main": "src/index.ts",
   "scripts": {
     "dev": "nodemon",
