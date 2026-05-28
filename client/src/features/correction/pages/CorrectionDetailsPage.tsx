@@ -66,7 +66,7 @@ export function CorrectionDetailsPage() {
         {...register("gradedAnswer")}
       />
 
-      {isPending ? <AnalysisResultSkeleton /> : <AnalysisResult finalScore={correction.finalScore} similarityScore={correction.similarityScore} feedback={correction.feedback} />}
+      {isPending ? <AnalysisResultSkeleton /> : <AnalysisResult finalScore={correction.finalScore} feedback={correction.feedback} />}
 
       {!isPending && (
         <div className="flex max-sm:flex-col gap-4">
