@@ -21,9 +21,8 @@ const feedbacks = [
 
 export function generateDummyAIResult(): AIResult {
   const finalScore = randomInt(0, 100);
-  const similarityScore = finalScore >= 3 ? finalScore - 3 : finalScore;
   const relevanceLabel = getRelevanceLabel(finalScore);
   const feedback = feedbacks[randomInt(0, feedbacks.length - 1)] as string;
 
-  return { finalScore, similarityScore, relevanceLabel, feedback };
+  return { finalScore, relevanceLabel, feedback };
 }
