@@ -35,7 +35,6 @@ export async function createCorrection(userId: string, data: CorrectionInput, ai
       question: data.question,
       gradedAnswer: data.gradedAnswer,
       finalScore: aiResult.finalScore,
-      similarityScore: aiResult.similarityScore,
       relevanceLabel: aiResult.relevanceLabel,
       feedback: aiResult.feedback,
       answerReferences: {
@@ -58,7 +57,6 @@ export async function updateCorrection(id: string, userId: string, data: Correct
       question: data.question,
       gradedAnswer: data.gradedAnswer,
       finalScore: aiResult.finalScore,
-      similarityScore: aiResult.similarityScore,
       relevanceLabel: aiResult.relevanceLabel,
       feedback: aiResult.feedback,
       answerReferences: {
