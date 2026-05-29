@@ -21,13 +21,11 @@ export async function getCorrectionById(id: string): Promise<CorrectionDetail> {
 }
 
 export async function createCorrection(data: CorrectionFormValues): Promise<CorrectionDetail> {
-  await new Promise((resolve) => setTimeout(resolve, 3000));
   const response = await api.post("/corrections", toRequestPayload(data));
   return response.data.data;
 }
 
 export async function updateCorrection(id: string, data: CorrectionFormValues): Promise<CorrectionDetail> {
-  await new Promise((resolve) => setTimeout(resolve, 3000));
   const response = await api.put(`/corrections/${id}`, toRequestPayload(data));
   return response.data.data;
 }
