@@ -30,6 +30,7 @@ model Correction {
   question         String            @db.Text
   gradedAnswer     String            @db.Text
   finalScore       Int
+  similarityScore  Int
   relevanceLabel   RelevanceLabel
   feedback         String            @db.Text
   createdAt        DateTime          @default(now())

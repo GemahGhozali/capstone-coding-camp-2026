@@ -18,6 +18,7 @@ export interface CorrectionDetail {
   question: string;
   gradedAnswer: string;
   finalScore: number;
+  similarityScore: number;
   relevanceLabel: string;
   feedback: string;
   answerReferences: AnswerReference[];

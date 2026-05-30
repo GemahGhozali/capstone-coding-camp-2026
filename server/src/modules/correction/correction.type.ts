@@ -8,6 +8,7 @@ export const relevanceLabelMap: Record<string, string> = {
 
 export interface AIResult {
   finalScore: number;
+  similarityScore: number;
   relevanceLabel: RelevanceLabel;
   feedback: string;
 }
@@ -24,6 +25,7 @@ export interface CorrectionResult {
   question: string;
   gradedAnswer: string;
   finalScore: number;
+  similarityScore: number;
   relevanceLabel: string;
   feedback: string;
   answerReferences: AnswerReference[];

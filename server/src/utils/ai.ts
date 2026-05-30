@@ -56,5 +56,5 @@ export async function generateAIResult(data: CorrectionInput): Promise<AIResult>
   const text = response.choices[0]?.message.content!;
   const parsed: Pick<AIResult, "finalScore" | "feedback"> = JSON.parse(text);
 
-  return { finalScore: parsed.finalScore, relevanceLabel: getRelevanceLabel(parsed.finalScore), feedback: parsed.feedback };
+  return { finalScore: parsed.finalScore, similarityScore: parsed.finalScore, relevanceLabel: getRelevanceLabel(parsed.finalScore), feedback: parsed.feedback };
 }
