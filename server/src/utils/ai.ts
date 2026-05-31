@@ -1,9 +1,11 @@
+import axios from "axios";
 import Groq from "groq-sdk";
 import { AIResult } from "../modules/correction/correction.type";
 import { RelevanceLabel } from "../generated/prisma/enums";
 import { CorrectionInput } from "../modules/correction/correction.schema";
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+const aiModel = axios.create({ baseURL: process.env.AI_MODEL_REST_API_URL as string });
 
 function getRelevanceLabel(score: number): RelevanceLabel {
   if (score >= 76) return RelevanceLabel.SangatRelevan;
@@ -11,50 +13,50 @@ function getRelevanceLabel(score: number): RelevanceLabel {
   return RelevanceLabel.TidakRelevan;
 }
 
-export async function generateAIResult(data: CorrectionInput): Promise<AIResult> {
+async function gradeWithModel(data: CorrectionInput): Promise<{ score: number; similarity: number }> {
+  const response = await aiModel.post("/grade", {
+    reference_answer: data.answerReferences.join(", "),
+    student_answer: data.gradedAnswer,
+  });
+
+  return { score: response.data.score, similarity: response.data.similarity };
+}
+
+async function generateFeedback(data: CorrectionInput, score: number): Promise<string> {
   const response = await groq.chat.completions.create({
     model: "llama-3.3-70b-versatile",
     messages: [
       {
         role: "system",
-        content: `Kamu adalah sistem penilai essay otomatis yang objektif dan konsisten.
-          Selalu response dengan JSON berikut tanpa teks tambahan apapun:
-          {
-            "finalScore": <integer 0-100>,
-            "feedback": "<string 100 kata, evaluasi mendalam mencakup: kualitas jawaban secara keseluruhan, poin-poin yang berhasil dijawab, dan poin yang masih kurang>"
-          }
-          Gunakan EXACTLY nama field "finalScore" dan "feedback". Jangan gunakan nama field lain.
-        `,
+        content: `You are an objective and consistent automated essay grading system. Your task is to provide feedback in Bahasa Indonesia based on the essay question, reference answers, student answer, and the score given. Provide detailed feedback of 50 words covering: overall answer quality, points that were successfully addressed, and points that are still lacking. Response with plain text only, no JSON, no markdown.`,
       },
       {
         role: "user",
         content: `
-          Soal: ${data.question}
-
-          Referensi Jawaban:
+          Question: ${data.question}
+          Reference Answers:
           ${data.answerReferences.map((answer, i) => `${i + 1}. ${answer}`).join("\n")}
-
-          Jawaban Siswa: ${data.gradedAnswer}
-
-          Tugas kamu:
-          1. Bandingkan jawaban siswa dengan referensi jawaban yang diberikan
-          2. Berikan skor akhir (0-100) berdasarkan kelengkapan dan ketepatan jawaban
-          3. Berikan feedback yang menjelaskan kualitas jawaban, kelebihan, dan kekurangannya
-
-          Aturan penilaian:
-          - Skor 76-100: Jawaban mencakup sebagian besar atau semua poin penting dari referensi
-          - Skor 41-75: Jawaban mencakup beberapa poin penting namun masih ada yang terlewat
-          - Skor 0-40: Jawaban kurang relevan atau tidak mencakup poin penting dari referensi
+          Student Answer: ${data.gradedAnswer}
+          Score given: ${score}/100
+          Provide feedback in Bahasa Indonesia based on the information above.
         `,
       },
     ],
-    response_format: { type: "json_object" },
-    max_tokens: 300,
+    max_tokens: 100,
     temperature: 0.2,
   });
 
-  const text = response.choices[0]?.message.content!;
-  const parsed: Pick<AIResult, "finalScore" | "feedback"> = JSON.parse(text);
+  return response.choices[0]?.message.content!;
+}
 
-  return { finalScore: parsed.finalScore, similarityScore: parsed.finalScore, relevanceLabel: getRelevanceLabel(parsed.finalScore), feedback: parsed.feedback };
+export async function generateAIResult(data: CorrectionInput): Promise<AIResult> {
+  const modelResult = await gradeWithModel(data);
+  const feedback = await generateFeedback(data, modelResult.score);
+
+  return {
+    finalScore: modelResult.score,
+    similarityScore: Math.round(modelResult.similarity * 100),
+    relevanceLabel: getRelevanceLabel(modelResult.score),
+    feedback,
+  };
 }
